@@ -5,16 +5,15 @@ from random import randint
 class Player:
    name: str
    lives: int
-   score: int = 0
+   score: int
    
-   def __init__(self, name: str, lives: int, score: int) -> None:
+   def __init__(self, name: str) -> None:
       self.name = name
-      self.lives = lives
-      self.score = score
-      
+      self.lives = PLAYER_LIVES
+      self.score = 0
    def choice(self) -> str:
       while True:
-         user_choice = input("\nChoose a Paper(1), Rock(2) or Scissors(3):\n")
+         user_choice = input("\nChoose a Paper(1), Rock(2) or Scissors(3):\n\n")
             
          if user_choice == "1":
             return PAPER
@@ -27,13 +26,10 @@ class Player:
    def decreas_lives(self) -> None:
       self.lives -= 1
       if self.lives == 0:
-         raise GameOver()
+         raise GameOver("\n     You lost the game\n")
       
    def add_score(self, score: int) -> None:
       self.score += score
-      
-   def __str__(self) -> str:
-      return f"{self.name} has {self.lives} lives and {self.score} points"
       
 class Enemy: 
    lives: int 
@@ -55,7 +51,4 @@ class Enemy:
    def decreas_lives(self) -> None:  
       self.lives -= 1
       if self.lives == 0:
-         raise EnemyLost()
-      
-   def increase_level(self) -> None:
-      self.level += 1
+         raise EnemyLost("\n   Congratulations, you defeated enemy\n")
