@@ -7,10 +7,13 @@ class Player:
    lives: int
    score: int
    
+   
    def __init__(self, name: str) -> None:
       self.name = name
       self.lives = PLAYER_LIVES
       self.score = 0
+      
+      
    def choice(self) -> str:
       while True:
          user_choice = input("\nChoose a Paper(1), Rock(2) or Scissors(3):\n\n")
@@ -28,8 +31,11 @@ class Player:
       if self.lives == 0:
          raise GameOver("\n     You lost the game\n")
       
+      
+      
    def add_score(self, score: int) -> None:
       self.score += score
+      
       
 class Enemy: 
    lives: int 
@@ -39,6 +45,8 @@ class Enemy:
       self.lives = lives
       self.level = level
       
+      
+      
    def choice(self) -> str:
       enemy_choice = str(randint(1, 3))
       if enemy_choice == "1":
@@ -47,6 +55,7 @@ class Enemy:
          return ROCK
       elif enemy_choice == "3":
          return SCISSORS
+   
    
    def decreas_lives(self) -> None:  
       self.lives -= 1
